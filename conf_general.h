@@ -21,10 +21,10 @@
 #define CONF_GENERAL_H_
 
 // Firmware version
-#define FW_VERSION_MAJOR			5
-#define FW_VERSION_MINOR			01
+#define FW_VERSION_MAJOR 5
+#define FW_VERSION_MINOR 01
 // Set to 0 for building a release and iterate during beta test builds
-#define FW_TEST_VERSION_NUMBER		0
+#define FW_TEST_VERSION_NUMBER 0
 
 #include "datatypes.h"
 
@@ -71,10 +71,10 @@
 
 // Mark3 version of HW60 with power switch and separate NRF UART.
 //#define HW60_IS_MK3
-#define HW60_IS_MK4
+//#define HW60_IS_MK4
 
-#define HW_SOURCE "hw_60.c"
-#define HW_HEADER "hw_60.h"
+//#define HW_SOURCE "hw_60.c"
+//#define HW_HEADER "hw_60.h"
 
 //#define HW_SOURCE "hw_r2.c"
 //#define HW_HEADER "hw_r2.h"
@@ -146,6 +146,9 @@
 //
 //#define HW_SOURCE "hw_stormcore_100s.c"
 //#define HW_HEADER "hw_stormcore_100s.h"
+
+#define HW_SOURCE "hw_vayu.c"
+#define HW_HEADER "hw_vayu.h"
 #endif
 
 #ifndef HW_SOURCE
@@ -195,58 +198,58 @@
  * Enable blackmagic probe output on SWD port
  */
 #ifndef HAS_BLACKMAGIC
-#define HAS_BLACKMAGIC				1
+#define HAS_BLACKMAGIC 1
 #endif
 
 /*
  * Enable CAN-bus
  */
 #ifndef CAN_ENABLE
-#define CAN_ENABLE					1
+#define CAN_ENABLE 1
 #endif
 
 #ifdef HW_HAS_NO_CAN
 #undef CAN_ENABLE
-#define CAN_ENABLE 					0
+#define CAN_ENABLE 0
 #endif
 
 /*
  * Settings for the external LEDs (hardcoded for now)
  */
-#define LED_EXT_BATT_LOW			28.0
-#define LED_EXT_BATT_HIGH			33.0
+#define LED_EXT_BATT_LOW 28.0
+#define LED_EXT_BATT_HIGH 33.0
 
 /*
  * Output WS2811 signal on the HALL1 pin. Notice that hall sensors can't be used
  * at the same time.
  */
 #ifndef WS2811_ENABLE
-#define WS2811_ENABLE				0
+#define WS2811_ENABLE 0
 #endif
-#define WS2811_CLK_HZ				800000
-#define WS2811_LED_NUM				28
-#define WS2811_USE_CH2				1		// 0: CH1 (PB6) 1: CH2 (PB7)
+#define WS2811_CLK_HZ 800000
+#define WS2811_LED_NUM 28
+#define WS2811_USE_CH2 1 // 0: CH1 (PB6) 1: CH2 (PB7)
 #ifndef WS2811_TEST
-#define WS2811_TEST					0		// Show a test pattern
+#define WS2811_TEST 0 // Show a test pattern
 #endif
 
 /*
  * Servo output driver
  */
 #ifndef SERVO_OUT_ENABLE
-#define SERVO_OUT_ENABLE			0		// Enable servo output
+#define SERVO_OUT_ENABLE 0 // Enable servo output
 #endif
-#define SERVO_OUT_PULSE_MIN_US		1000	// Minimum pulse length in microseconds
-#define SERVO_OUT_PULSE_MAX_US		2000	// Maximum pulse length in microseconds
-#define SERVO_OUT_RATE_HZ			50		// Update rate in Hz
+#define SERVO_OUT_PULSE_MIN_US 1000 // Minimum pulse length in microseconds
+#define SERVO_OUT_PULSE_MAX_US 2000 // Maximum pulse length in microseconds
+#define SERVO_OUT_RATE_HZ 50        // Update rate in Hz
 
 // Correction factor for computations that depend on the old resistor division factor
-#define VDIV_CORR					((VIN_R2 / (VIN_R2 + VIN_R1)) / (2.2 / (2.2 + 33.0)))
+#define VDIV_CORR ((VIN_R2 / (VIN_R2 + VIN_R1)) / (2.2 / (2.2 + 33.0)))
 
 // Current ADC to amperes factor
-#define FAC_CURRENT					((V_REG / 4095.0) / (CURRENT_SHUNT_RES * CURRENT_AMP_GAIN))
+#define FAC_CURRENT ((V_REG / 4095.0) / (CURRENT_SHUNT_RES * CURRENT_AMP_GAIN))
 
-#define VOLTAGE_TO_ADC_FACTOR	( VIN_R2 / (VIN_R2 + VIN_R1) ) * ( 4096.0 / V_REG )
+#define VOLTAGE_TO_ADC_FACTOR (VIN_R2 / (VIN_R2 + VIN_R1)) * (4096.0 / V_REG)
 
 // Actual voltage on 3.3V net based on internal reference
 //#define V_REG						(1.21 / ((float)ADC_Value[ADC_IND_VREFINT] / 4095.0))
@@ -254,18 +257,18 @@
 
 // Use the pins for the hardware SPI port instead of the hall/encoder pins for the AS5047
 #ifndef AS5047_USE_HW_SPI_PINS
-#define AS5047_USE_HW_SPI_PINS		0
+#define AS5047_USE_HW_SPI_PINS 0
 #endif
 #ifndef AD2S1205_USE_HW_SPI_PINS
-#define AD2S1205_USE_HW_SPI_PINS	0
+#define AD2S1205_USE_HW_SPI_PINS 0
 #endif
 
 /*
  * MCU
  */
-#define SYSTEM_CORE_CLOCK			168000000
-#define STM32_UUID					((uint32_t*)0x1FFF7A10)
-#define STM32_UUID_8				((uint8_t*)0x1FFF7A10)
+#define SYSTEM_CORE_CLOCK 168000000
+#define STM32_UUID ((uint32_t *)0x1FFF7A10)
+#define STM32_UUID_8 ((uint8_t *)0x1FFF7A10)
 
 /*
  *	Run the BLDC speed controller in current mode instead of duty cycle mode. This will
@@ -276,7 +279,7 @@
  *	controller dynamics in between. FOC on the other hand is inherently based on current
  *	control.
  */
-#define BLDC_SPEED_CONTROL_CURRENT	1
+#define BLDC_SPEED_CONTROL_CURRENT 1
 
 /*
  *	Run the FOC loop once every N ADC ISR requests. This way the pwm frequency is
@@ -285,7 +288,7 @@
  *	so it skips 2 ISR calls and execute the control loop in the 3rd call.
  */
 #ifndef FOC_CONTROL_LOOP_FREQ_DIVIDER
-#define FOC_CONTROL_LOOP_FREQ_DIVIDER	1
+#define FOC_CONTROL_LOOP_FREQ_DIVIDER 1
 #endif
 
 // Global configuration variables
@@ -302,19 +305,19 @@ bool conf_general_store_app_configuration(app_configuration *conf);
 void conf_general_read_mc_configuration(mc_configuration *conf, bool is_motor_2);
 bool conf_general_store_mc_configuration(mc_configuration *conf, bool is_motor_2);
 bool conf_general_detect_motor_param(float current, float min_rpm, float low_duty,
-		float *int_limit, float *bemf_coupling_k, int8_t *hall_table, int *hall_res);
+                                     float *int_limit, float *bemf_coupling_k, int8_t *hall_table, int *hall_res);
 bool conf_general_measure_flux_linkage(float current, float duty,
-		float min_erpm, float res, float *linkage);
+                                       float min_erpm, float res, float *linkage);
 uint8_t conf_general_calculate_deadtime(float deadtime_ns, float core_clock_freq);
 bool conf_general_measure_flux_linkage_openloop(float current, float duty,
-		float erpm_per_sec, float res, float ind, float *linkage,
-		float *linkage_undriven, float *undriven_samples);
+                                                float erpm_per_sec, float res, float ind, float *linkage,
+                                                float *linkage_undriven, float *undriven_samples);
 int conf_general_autodetect_apply_sensors_foc(float current,
-		bool store_mcconf_on_success, bool send_mcconf_on_success);
+                                              bool store_mcconf_on_success, bool send_mcconf_on_success);
 void conf_general_calc_apply_foc_cc_kp_ki_gain(mc_configuration *mcconf, float tc);
 int conf_general_detect_apply_all_foc(float max_power_loss,
-		bool store_mcconf_on_success, bool send_mcconf_on_success);
+                                      bool store_mcconf_on_success, bool send_mcconf_on_success);
 int conf_general_detect_apply_all_foc_can(bool detect_can, float max_power_loss,
-		float min_current_in, float max_current_in, float openloop_rpm, float sl_erpm);
+                                          float min_current_in, float max_current_in, float openloop_rpm, float sl_erpm);
 
 #endif /* CONF_GENERAL_H_ */
